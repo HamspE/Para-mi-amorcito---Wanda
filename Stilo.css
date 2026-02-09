@@ -1,0 +1,195 @@
+/* --- CONFIGURACIÓN GENERAL Y FUENTES --- */
+:root {
+  --rose-gold: #b76e79;
+  --cream: #fdfbf7;
+  --soft-pink: #ffe4e1;
+  --dark-text: #5a4a4e;
+  --gold-accent: #d4af37;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+  /* Fondo degradado muy suave y elegante */
+  background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+  color: var(--dark-text);
+}
+
+/* --- EFECTO BOKEH DE FONDO (LUCES DESENFOCADAS) --- */
+.bokeh-container {
+  position: fixed; width: 100%; height: 100%; z-index: -1;
+}
+.bokeh-light {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,228,225,0.6) 0%, rgba(255,255,255,0) 70%);
+  filter: blur(10px);
+  opacity: 0;
+  animation: floatBokeh linear infinite;
+}
+@keyframes floatBokeh {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+}
+
+/* --- SOBRE PREMIUM --- */
+.valentines-day {
+  position: relative; cursor: pointer;
+  animation: subtleFloat 3s ease-in-out infinite;
+  z-index: 50;
+}
+@keyframes subtleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.envelope {
+  position: relative;
+  filter: drop-shadow(0 15px 25px rgba(183, 110, 121, 0.3));
+}
+.envelope:before {
+  content:""; position: absolute;
+  width:254px; height:254px;
+  background-color: var(--rose-gold);
+  transform: rotate(-45deg);
+  border-radius: 0 15px 0 0;
+  left:-37px; top:-82px;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+.envelope:after {
+  content:""; position: absolute;
+  background-color: var(--rose-gold);
+  width:360px; height:225px;
+  left:-90px; top:45px;
+}
+
+/* Sello de corazón metálico */
+.heart-seal {
+  position: relative;
+  background: linear-gradient(135deg, var(--gold-accent), #f7e7ce);
+  display: inline-block;
+  height: 100px; width: 100px;
+  top:30px; left:40px;
+  transform: rotate(-45deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+.heart-seal:before, .heart-seal:after {
+  content:""; background: inherit;
+  border-radius:50%; height: 100px; width: 100px; position: absolute;
+}
+.heart-seal:before { top:-50px; left:0; }
+.heart-seal:after { left:50px; top:0; }
+
+.text {
+  position: absolute; top: 100px; left: 0; width: 100%;
+  text-align: center; z-index: 5; color: white;
+}
+.to-label { font-size: 0.9em; letter-spacing: 2px; text-transform: uppercase; opacity: 0.9; }
+.premium-name {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.8em; font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.front {
+  position: absolute; width:0; height:0; z-index:4;
+  border-right: 190px solid #c07e89; /* Un tono más claro que el sobre */
+  border-top: 113px solid transparent; border-bottom: 113px solid transparent;
+  top:44px; left:80px;
+}
+.front:before {
+  content:""; position: absolute; width:0; height:0;
+  border-left: 190px solid #c07e89;
+  border-top: 113px solid transparent; border-bottom: 113px solid transparent;
+  top:-113px; left:-170px;
+}
+.front:after {
+  width:0; height:0; position: absolute; content:"";
+  border-bottom: 150px solid #d19ba4;
+  border-right:180px solid transparent; border-left: 180px solid transparent;
+  top:-36px; left:-170px;
+}
+
+/* --- CARTA MINIMALISTA (GLASSMORPHISM) --- */
+#card {
+  height: 500px; width: 800px;
+  position: fixed; display: flex; visibility: hidden; z-index: 100;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  /* Efecto de borde brillante sutil */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+}
+
+.glass-effect {
+  /* Efecto de cristal esmerilado */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.side {
+  width: 50%; height: 100%;
+  box-sizing: border-box; padding: 40px;
+  display: flex; flex-direction: column; justify-Content: center;
+}
+
+/* Lado Izquierdo: Corazón Elegante */
+.side.one {
+  align-items: center;
+  border-right: 1px solid rgba(183, 110, 121, 0.2);
+}
+
+.elegant-heart-wrapper { animation: pulseElegant 2s infinite ease-in-out; }
+@keyframes pulseElegant { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); opacity: 0.9; } }
+
+.elegant-heart {
+  position: relative; width: 120px; height: 120px;
+  background: linear-gradient(to bottom right, var(--rose-gold), #d19ba4);
+  transform: rotate(-45deg);
+  box-shadow: 0 10px 20px rgba(183, 110, 121, 0.3);
+}
+.elegant-heart:before, .elegant-heart:after {
+  content: ""; position: absolute; width: 120px; height: 120px;
+  background: inherit; border-radius: 50%;
+}
+.elegant-heart:before { top: -60px; left: 0; }
+.elegant-heart:after { left: 60px; top: 0; }
+
+.sub-text {
+  margin-top: 80px; font-size: 0.9em; color: var(--rose-gold);
+  letter-spacing: 1px; text-transform: uppercase; opacity: 0.7;
+}
+
+/* Lado Derecho: Texto Profesional */
+.premium-header {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 2.5em; color: var(--rose-gold);
+  margin: 0 0 25px 0; text-align: center;
+  border-bottom: 1px solid rgba(183, 110, 121, 0.3);
+  padding-bottom: 15px;
+}
+
+.message-content p {
+  font-size: 1.1em; line-height: 1.7; margin-bottom: 15px; color: #666;
+}
+
+.highlight-box {
+  margin-top: 20px; padding: 20px;
+  background: rgba(183, 110, 121, 0.08); /* Fondo rosa muy sutil */
+  border-left: 3px solid var(--rose-gold);
+  font-weight: 600; color: var(--dark-text);
+  font-family: 'Cinzel Decorative', cursive; /* Un toque elegante para el destaque */
+}
+
+.signature {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 1.5em; text-align: right;
+  color: var(--rose-gold); margin-top: 30px;
+}
